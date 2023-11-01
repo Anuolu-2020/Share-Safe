@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital@1&family=Lilita+One&family=Pathway+Gothic+One&family=Staatliches&display=swap");
 body {
   display: flex;
   flex-direction: column;
@@ -6,15 +7,21 @@ body {
   padding: 0;
 }
 
+h2 {
+  font-family: "Pathway Gothic One", sans-serif;
+  color: brown;
+}
+
 header {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-  height: 80px;
+  gap: 0;
+  height: 90px;
   background-color: whitesmoke;
   margin-bottom: 50px;
+  padding: 10px;
 }
 
 main {
@@ -26,13 +33,18 @@ main {
 
 textarea {
   resize: none;
-  padding: 8px;
+  padding: 4px;
   overflow-y: auto;
   box-sizing: border-box;
-  /* line-height: normal; */
+  width: 400px;
+  height: 300px;
 }
 
-#user-words,
+textarea:focus {
+  outline-color: brown;
+}
+
+#userWords,
 #wordsToRedact {
   border: 2px solid goldenrod;
   border-radius: 8px;
@@ -43,16 +55,24 @@ textarea {
   display: flex;
   width: 200px;
   height: 50px;
-  background-color: greenyellow;
+  background-color: cornflowerblue;
+  color: white;
   border-radius: 10px;
   text-align: center;
   align-items: center;
   justify-content: center;
+  font-family: "Lilita One", sans-serif;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+#redactButton:hover {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 footer {
   margin-top: 50px;
-  width: 100%;
   height: 200px;
   background-color: grey;
 }
@@ -60,6 +80,66 @@ footer {
 #logos {
   display: flex;
   text-align: center;
+  gap: 60px;
+  margin-top: 10px;
 }
 
-#
+#webDescription {
+  margin: 0;
+  font-family: "Cabin", sans-serif;
+  color: brown;
+}
+
+#secondTextArea {
+  display: flex;
+}
+
+option,
+select {
+  font-family: "Lilita One", sans-serif;
+  color: white;
+}
+
+select {
+  display: none;
+  background-color: chocolate;
+}
+
+#redactWord {
+  width: 60px;
+  height: 40px;
+}
+
+#userChoice {
+  display: flex;
+  gap: 40px;
+}
+
+input {
+  display: none;
+  height: 30px;
+  width: 60px;
+  font-family: "Lilita One", sans-serif;
+  color: brown;
+}
+
+input:focus {
+  outline-color: brown;
+}
+
+#preset,
+#userRedactWord {
+  color: grey;
+  font-family: "Lilita One", sans-serif;
+  font-size: 25px;
+}
+
+#preset:hover,
+#userRedactWord:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#resultStats {
+  display: none;
+}
