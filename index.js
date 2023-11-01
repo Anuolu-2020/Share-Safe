@@ -55,6 +55,8 @@ let presetRedactSign = userPreset.value;
 //Reference to store new words
 let userWordsNew;
 
+let operationTitle = document.getElementById("operationTitle");
+
 //Start Operation Time
 const startTime = performance.now();
 
@@ -78,6 +80,8 @@ function redact() {
 
   let pattern = `\\b(${regexMatch})\\b`;
 
+  let redactPreset = document.getElementById("redactWord");
+
   console.log(pattern);
 
   let regex = new RegExp(pattern, "g");
@@ -85,19 +89,30 @@ function redact() {
   let result = userWords.match(regex);
 
   if (result) {
-    console.log("word found", result);
+    let resultStat = document.getElementById("resultStats");
+    resultStat.style.display = "block";
 
-    console.log(`Scrambled ${result.length} words`);
-    userWordsNew = userWords.replace(regex, "???");
+    // console.log("word found", result);
+    let scrambledWords = document.getElementById("scrambledWords");
+
+    scrambledWords.textContent = `Scrambled ${result.length - 1} words`;
+    userWordsNew = userWords.replace(regex, redactPreset.value);
 
     //Display New Words
-    console.log(userWordsNew);
+    // console.log(userWordsNew);
+
+    userContent.value = userWordsNew;
+
+    //Change operation title
+    operationTitle.textContent = "SCRAMBLED SUCCESSFULLY";
 
     //Split the contents to be redacted
     let userWordsSplit = userWords.split(/\s+/);
 
+    let scannedWords = document.getElementById("scannedWords");
+
+    scannedWords.textContent = `Scanned ${userWordsSplit.length} Words`;
     //Get number of words scanned
-    console.log(`Scanned ${userWordsSplit.length} Words`);
   } else {
     console.log("No Words Found");
   }
@@ -105,9 +120,11 @@ function redact() {
 
 const endTime = performance.now();
 
-const timeTaken = endTime - startTime;
+const timeTaken = (endTime - startTime) / 1000;
+
+let operationTime = document.getElementById("operationTime");
 
 document.getElementById("redactButton").addEventListener("click", () => {
   redact();
-  console.log(`Time taken: ${timeTaken / 1000} seconds`);
+  operationTime.textContent = `Time taken: ${timeTaken} seconds`;
 });
