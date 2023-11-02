@@ -7,6 +7,6 @@ let copied = document.getElementById("copied");
 copy.addEventListener("click", () => {
   copied.style.display = "block";
   userPost.select();
-
+  //copy new words
   navigator.clipboard.writeText(userPost.value);
 });
