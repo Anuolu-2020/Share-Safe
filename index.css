@@ -49,6 +49,9 @@ textarea:focus {
   border: 2px solid goldenrod;
   border-radius: 8px;
   margin: 8px;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: large;
+  color: brown;
 }
 
 #redactButton {
@@ -142,4 +145,29 @@ input:focus {
 
 #resultStats {
   display: none;
+  flex-direction: column;
+  gap: 0;
+  margin-right: auto;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+#statsTitle {
+  align-self: center;
+}
+
+#scrambledWords,
+#scannedWords,
+#numOfCharScrambled,
+#operationTime {
+  display: flex;
+  align-items: center;
+}
+
+#words,
+#scramWords,
+#characters,
+#time {
+  color: brown;
+  font-family: "Pathway Gothic One", sans-serif;
 }
