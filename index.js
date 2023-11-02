@@ -57,10 +57,23 @@ let userWordsNew;
 
 let operationTitle = document.getElementById("operationTitle");
 
+let redactPreset = document.getElementById("redactWord");
+
+function scrambledSign() {
+  if (isPreset) {
+    return redactPreset.value;
+  } else if (isUserPreset) {
+    return userPreset.value;
+  } else {
+    return redactPreset.value;
+  }
+}
+
 //Start Operation Time
-const startTime = performance.now();
 
 function redact() {
+  const startTime = performance.now();
+
   //User Content
   let userWords = userContent.value;
   // "EMMNAUEL NAME IS GOOD"
@@ -68,11 +81,13 @@ function redact() {
   // console.log(userWords);
   userWords.trim().replace(/\s+/g, " ");
 
-  // let userWordSplit = userWords.split(/\s+/);
-
   let userRedact = userRedactWords.value;
 
-  // ("NAME GOOD");
+  let scannedCharac = document.getElementById("characters");
+
+  let numOfCharac = userWords.trim().split(" ").join("");
+  scannedCharac.textContent = `Scanned ${numOfCharac.length} Characters`;
+  // console.log(numOfCharac.length);
 
   let userRedactSplit = userRedact.trim().split(" ");
 
@@ -80,51 +95,106 @@ function redact() {
 
   let pattern = `\\b(${regexMatch})\\b`;
 
-  let redactPreset = document.getElementById("redactWord");
-
   console.log(pattern);
 
   let regex = new RegExp(pattern, "g");
 
   let result = userWords.match(regex);
 
-  if (result) {
+  let numOfScannedWord = userWords.trim().split(" ");
+  let scannedWords = document.getElementById("words");
+
+  scannedWords.textContent = `Scanned ${numOfScannedWord.length} Words`;
+
+  if (result && userContent.value) {
     let resultStat = document.getElementById("resultStats");
-    resultStat.style.display = "block";
+    resultStat.style.display = "flex";
 
     // console.log("word found", result);
-    let scrambledWords = document.getElementById("scrambledWords");
+    let scrambledWords = document.getElementById("scramWords");
 
-    scrambledWords.textContent = `Scrambled ${result.length - 1} words`;
-    userWordsNew = userWords.replace(regex, redactPreset.value);
-
-    //Display New Words
-    // console.log(userWordsNew);
+    scrambledWords.textContent = `Scrambled ${result.length} words`;
+    userWordsNew = userWords.replace(regex, scrambledSign());
 
     userContent.value = userWordsNew;
 
     //Change operation title
     operationTitle.textContent = "SCRAMBLED SUCCESSFULLY";
 
-    //Split the contents to be redacted
-    let userWordsSplit = userWords.split(/\s+/);
-
-    let scannedWords = document.getElementById("scannedWords");
-
-    scannedWords.textContent = `Scanned ${userWordsSplit.length} Words`;
-    //Get number of words scanned
+    noWord.style.display = "none";
   } else {
+    let noWord = document.getElementById("noWord");
+    noWord.style.display = "block";
+
+    let copy = document.getElementById("copy");
+    copy.style.display = "none";
+
+    let resultStat = document.getElementById("resultStats");
+    resultStat.style.display = "none";
+
     console.log("No Words Found");
   }
+
+  const endTime = performance.now();
+
+  const timeTaken = (endTime - startTime) / 1000;
+
+  let operationTime = document.getElementById("time");
+  operationTime.textContent = `Time taken: ${timeTaken} seconds`;
 }
 
-const endTime = performance.now();
-
-const timeTaken = (endTime - startTime) / 1000;
-
-let operationTime = document.getElementById("operationTime");
-
 document.getElementById("redactButton").addEventListener("click", () => {
-  redact();
-  operationTime.textContent = `Time taken: ${timeTaken} seconds`;
+  if (userContent.value === " ") {
+    let title = document.getElementById("operationTitle");
+    title.textContent = "Please Paste A Word";
+
+    let copy = document.getElementById("copy");
+    copy.style.display = "none";
+
+    let copied = document.getElementById("copied");
+    copied.style.display = "none";
+
+    console.log("NOW WORDS");
+  } else {
+    let copy = document.getElementById("copy");
+
+    copy.style.display = "block";
+
+    redact();
+    document.getElementById("redactButton").style.display = "none";
+    document.getElementById("resetButton").style.display = "flex";
+  }
+});
+
+//Reset Button
+document.getElementById("resetButton").addEventListener("click", () => {
+  let copy = document.getElementById("copy");
+  copy.style.display = "none";
+
+  let copied = document.getElementById("copied");
+  copied.style.display = "none";
+
+  userContent.value = " ";
+  userRedactWords.value = " ";
+
+  let resultStat = document.getElementById("resultStats");
+  resultStat.style.display = "none";
+
+  operationTitle.textContent = "PASTE YOUR WORDS";
+
+  isPreset = false;
+  isUserPreset = false;
+
+  let redactPreset = document.getElementById("redactWord");
+
+  let userPreset = document.getElementById("userPreset");
+
+  redactPreset.style.display = "none";
+  userPreset.style.display = "none";
+
+  preset.style.display = "block";
+  userPresetWord.style.display = "block";
+
+  document.getElementById("redactButton").style.display = "flex";
+  document.getElementById("resetButton").style.display = "none";
 });

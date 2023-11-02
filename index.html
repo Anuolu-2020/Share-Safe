@@ -23,14 +23,49 @@
     <main>
       <h2 id="operationTitle">PASTE YOUR WORDS</h2>
       <section id="firstTextArea">
+        <h4 id="copied">Copied!</h4>
+        <img id="copy" src="./Assets/copy.png" width="30px" height="30px" />
         <textarea id="userWords"> </textarea>
       </section>
+      <h2 id="noWord">No Words To Scramble</h2>
       <section id="resultStats">
-        <h2>STATS</h2>
-        <section id="scannedWords"></section>
-        <section id="scrambledWords"></section>
-        <section id="numOfCharScrambled"></section>
-        <section id="operationTime"></section>
+        <h2 id="statsTitle">STATS</h2>
+        <section id="scannedWords">
+          <img
+            class="icons"
+            src="./Assets/scanfile.png"
+            width="30px"
+            height="30px"
+          />
+          <h3 id="words"></h3>
+        </section>
+        <section id="scrambledWords">
+          <img
+            class="icons"
+            src="./Assets/editfile.png"
+            width="30px"
+            height="30px"
+          />
+          <h3 id="scramWords"></h3>
+        </section>
+        <section id="numOfCharScrambled">
+          <img
+            class="icons"
+            src="./Assets/abc.png"
+            width="50px"
+            height="50px"
+          />
+          <h3 id="characters"></h3>
+        </section>
+        <section id="operationTime">
+          <img
+            class="icons"
+            src="./Assets/timer.png"
+            width="30px"
+            height="30px"
+          />
+          <h3 id="time"></h3>
+        </section>
       </section>
       <h2 id="scrambleTitle">TYPE OR PASTE WORDS TO BE SCRAMBLED</h2>
       <section id="secondTextArea">
@@ -51,8 +86,10 @@
       </section>
 
       <section id="redactButton"><h4>REDACT</h4></section>
+      <section id="resetButton"><h4>RESET</h4></section>
     </main>
     <footer></footer>
     <script src="./index.js"></script>
+    <script src="./copy.js"></script>
   </body>
 </html>

@@ -54,6 +54,21 @@ textarea:focus {
   color: brown;
 }
 
+#resetButton {
+  display: none;
+  width: 200px;
+  height: 50px;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lilita One", sans-serif;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
 #redactButton {
   display: flex;
   width: 200px;
@@ -69,9 +84,10 @@ textarea:focus {
   margin-top: 20px;
 }
 
-#redactButton:hover {
+#redactButton:hover,
+#resetButton:hover {
   opacity: 0.8;
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 footer {
@@ -147,9 +163,6 @@ input:focus {
   display: none;
   flex-direction: column;
   gap: 0;
-  margin-right: auto;
-  /* align-items: center; */
-  /* justify-content: center; */
 }
 
 #statsTitle {
@@ -170,4 +183,42 @@ input:focus {
 #time {
   color: brown;
   font-family: "Pathway Gothic One", sans-serif;
+}
+
+#noWord {
+  display: none;
+}
+
+#copy {
+  display: none;
+  align-self: flex-start;
+  margin-left: auto;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#copy:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#firstTextArea {
+  display: flex;
+  flex-direction: column;
+}
+
+#copied {
+  display: none;
+  color: brown;
+  position: relative;
+  top: 25px;
+  right: 35px;
+  /* align-self: flex-start; */
+  margin-left: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#operationTitle {
+  margin: 0;
 }
